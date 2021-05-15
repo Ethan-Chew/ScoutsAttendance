@@ -121,6 +121,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M72-6I-UQs"/>
+                    <connections>
+                        <outlet property="bgView" destination="8du-aj-5iQ" id="oB4-bI-pb3"/>
+                        <outlet property="exab" destination="Z7Z-Cd-Wfo" id="UnU-1d-QeF"/>
+                        <outlet property="nanob" destination="ucS-Wr-gbc" id="JIV-7V-6FU"/>
+                        <outlet property="terab" destination="BZC-pR-Hia" id="bCm-7e-unM"/>
+                        <outlet property="zetab" destination="Od4-aK-tLX" id="HY2-ny-I7h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -153,6 +160,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="aeR-28-oKw" appends="YES" id="m1r-7l-GbI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -170,37 +181,92 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEM-nJ-uIr">
+                                <rect key="frame" x="43.5" y="190.5" width="327" height="315"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name PlaceHolder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="yLw-my-wij">
+                                        <rect key="frame" x="8" y="8" width="311" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DLD-4O-fm1">
+                                        <rect key="frame" x="25" y="43" width="277" height="32"/>
+                                        <segments>
+                                            <segment title="Cancel"/>
+                                            <segment title="Late"/>
+                                            <segment title="Absent"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentedCtrl:" destination="PQp-7n-r3D" eventType="valueChanged" id="Bco-EP-nG1"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Reason" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5xU-tn-di2">
+                                        <rect key="frame" x="23" y="92" width="281" height="116"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Msv-oc-VBL">
+                                        <rect key="frame" x="106" y="238" width="115" height="54"/>
+                                        <color key="backgroundColor" red="0.90157146099999996" green="1" blue="0.92727526189999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="save:" destination="PQp-7n-r3D" eventType="touchUpInside" id="BNw-hf-BL0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99158436059999999" green="0.80076885220000005" blue="0.75684887170000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Msv-oc-VBL" secondAttribute="trailing" constant="106" id="1hF-1Z-Hjj"/>
+                                    <constraint firstAttribute="trailing" secondItem="yLw-my-wij" secondAttribute="trailing" constant="8" id="7vI-Mt-aCR"/>
+                                    <constraint firstAttribute="width" constant="327" id="8sx-jb-HzW"/>
+                                    <constraint firstItem="DLD-4O-fm1" firstAttribute="leading" secondItem="pEM-nJ-uIr" secondAttribute="leading" constant="25" id="LLk-lV-naR"/>
+                                    <constraint firstAttribute="bottom" secondItem="5xU-tn-di2" secondAttribute="bottom" constant="107" id="NQ9-0a-ahi"/>
+                                    <constraint firstItem="5xU-tn-di2" firstAttribute="top" secondItem="yLw-my-wij" secondAttribute="bottom" constant="63" id="Slb-j0-4Kv"/>
+                                    <constraint firstItem="Msv-oc-VBL" firstAttribute="leading" secondItem="pEM-nJ-uIr" secondAttribute="leading" constant="106" id="Ukc-p4-t2B"/>
+                                    <constraint firstAttribute="height" constant="315" id="VHx-ih-qUa"/>
+                                    <constraint firstItem="5xU-tn-di2" firstAttribute="leading" secondItem="pEM-nJ-uIr" secondAttribute="leading" constant="23" id="X0i-Hm-ZXN"/>
+                                    <constraint firstAttribute="trailing" secondItem="5xU-tn-di2" secondAttribute="trailing" constant="23" id="Z7i-km-V93"/>
+                                    <constraint firstItem="yLw-my-wij" firstAttribute="top" secondItem="pEM-nJ-uIr" secondAttribute="top" constant="8" id="bFf-HH-sFU"/>
+                                    <constraint firstAttribute="bottom" secondItem="Msv-oc-VBL" secondAttribute="bottom" constant="23" id="cO5-cV-myH"/>
+                                    <constraint firstItem="yLw-my-wij" firstAttribute="leading" secondItem="pEM-nJ-uIr" secondAttribute="leading" constant="8" id="dW6-IB-wVp"/>
+                                    <constraint firstAttribute="bottom" secondItem="yLw-my-wij" secondAttribute="bottom" constant="286" id="eee-po-DyD"/>
+                                    <constraint firstAttribute="trailing" secondItem="DLD-4O-fm1" secondAttribute="trailing" constant="25" id="ezI-Jk-FdC"/>
+                                    <constraint firstItem="DLD-4O-fm1" firstAttribute="top" secondItem="yLw-my-wij" secondAttribute="bottom" constant="14" id="vzU-pr-c9C"/>
+                                    <constraint firstItem="Msv-oc-VBL" firstAttribute="top" secondItem="5xU-tn-di2" secondAttribute="bottom" constant="30" id="xAZ-fX-f1E"/>
+                                    <constraint firstItem="5xU-tn-di2" firstAttribute="top" secondItem="DLD-4O-fm1" secondAttribute="bottom" constant="18" id="xue-KH-ahM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v88-eC-e5x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pEM-nJ-uIr" firstAttribute="centerY" secondItem="QfQ-Fe-Zfg" secondAttribute="centerY" constant="-100" id="VCr-tH-hkf"/>
+                            <constraint firstItem="pEM-nJ-uIr" firstAttribute="centerX" secondItem="QfQ-Fe-Zfg" secondAttribute="centerX" id="mw3-2D-6zi"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Jn4-KY-kzD"/>
                     <connections>
+                        <outlet property="attendance" destination="DLD-4O-fm1" id="VFP-C4-6MZ"/>
                         <outlet property="cStrength" destination="kyC-qM-6rO" id="104-wf-TWA"/>
+                        <outlet property="nameLabel" destination="yLw-my-wij" id="wpN-OQ-NTb"/>
                         <outlet property="patrolName" destination="EyH-Ia-NtK" id="kRG-wa-CiE"/>
+                        <outlet property="reasonField" destination="5xU-tn-di2" id="8G9-bm-VfQ"/>
+                        <outlet property="reasonView" destination="pEM-nJ-uIr" id="fed-7X-tPf"/>
+                        <outlet property="saveBtn" destination="Msv-oc-VBL" id="tvl-hD-B8r"/>
                         <outlet property="tStrength" destination="mUe-YS-peW" id="shd-Be-Cfl"/>
                         <outlet property="tableView" destination="kCo-KR-pze" id="me9-ZX-wBp"/>
-                        <segue destination="CK2-Ar-kb2" kind="show" id="ZHd-Fc-WXY"/>
+                        <outlet property="tapGuesture" destination="aeR-28-oKw" id="jbj-z7-bsl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NP6-gm-GYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aeR-28-oKw"/>
             </objects>
             <point key="canvasLocation" x="2031.8840579710147" y="87.723214285714278"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="mqs-ab-xgO">
-            <objects>
-                <viewController id="CK2-Ar-kb2" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kfg-pR-mdD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="pZj-ua-Vqy"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gT9-do-OFM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2777" y="88"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Rnf-Vd-7mT">
@@ -226,6 +292,9 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="SSTFF Logo" width="222" height="152"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

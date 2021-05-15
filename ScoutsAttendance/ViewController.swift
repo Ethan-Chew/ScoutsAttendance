@@ -19,13 +19,30 @@ class ViewController: UIViewController {
     var zetta:[String] = []
     
     // Buttons
+    @IBOutlet weak var exab: UIButton!
+    @IBOutlet weak var nanob: UIButton!
+    @IBOutlet weak var terab: UIButton!
+    @IBOutlet weak var zetab: UIButton!
+    @IBOutlet weak var bgView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Config Corner Radius
+        exab.clipsToBounds = true
+        exab.layer.cornerRadius = 12
+        nanob.clipsToBounds = true
+        nanob.layer.cornerRadius = 12
+        terab.clipsToBounds = true
+        terab.layer.cornerRadius = 12
+        zetab.clipsToBounds = true
+        zetab.layer.cornerRadius = 12
+        bgView.clipsToBounds = true
+        bgView.layer.cornerRadius = 12
+        
+        // UserDefaults Data
         if let fo = userDefaults.bool(forKey: "First Open") as? Bool {
             didFirstOpen = fo
         }
-//        didFirstOpen = false
         
         // Get Data
         if (!didFirstOpen) {
