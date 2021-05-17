@@ -15,6 +15,7 @@
 		59A9A2BA264E8A3600D3D953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A9A2B8264E8A3600D3D953 /* Main.storyboard */; };
 		59A9A2BC264E8A3A00D3D953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59A9A2BB264E8A3A00D3D953 /* Assets.xcassets */; };
 		59A9A2BF264E8A3A00D3D953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A9A2BD264E8A3A00D3D953 /* LaunchScreen.storyboard */; };
+		59AA9EFC265216AA00EBE1AB /* generateAttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AA9EFB265216AA00EBE1AB /* generateAttendanceViewController.swift */; };
 		7247A871B45B1F6D7E91B1F5 /* Pods_ScoutsAttendance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4CCEA49C0578A314B5139B /* Pods_ScoutsAttendance.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		59A9A2BB264E8A3A00D3D953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59A9A2BE264E8A3A00D3D953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59A9A2C0264E8A3A00D3D953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59AA9EFB265216AA00EBE1AB /* generateAttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generateAttendanceViewController.swift; sourceTree = "<group>"; };
 		CD4CCEA49C0578A314B5139B /* Pods_ScoutsAttendance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScoutsAttendance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 				59A9A2B4264E8A3500D3D953 /* SceneDelegate.swift */,
 				59A9A2B6264E8A3600D3D953 /* ViewController.swift */,
 				594F166A264EB43600E574DB /* takeAttendanceViewController.swift */,
+				59AA9EFB265216AA00EBE1AB /* generateAttendanceViewController.swift */,
 				59A9A2B8264E8A3600D3D953 /* Main.storyboard */,
 				59A9A2BB264E8A3A00D3D953 /* Assets.xcassets */,
 				59A9A2BD264E8A3A00D3D953 /* LaunchScreen.storyboard */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				594F166B264EB43600E574DB /* takeAttendanceViewController.swift in Sources */,
+				59AA9EFC265216AA00EBE1AB /* generateAttendanceViewController.swift in Sources */,
 				59A9A2B7264E8A3600D3D953 /* ViewController.swift in Sources */,
 				59A9A2B3264E8A3500D3D953 /* AppDelegate.swift in Sources */,
 				59A9A2B5264E8A3500D3D953 /* SceneDelegate.swift in Sources */,

@@ -22,18 +22,14 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuse", for: indexPath)
-        print(cell.textLabel?.text)
-        if let text = cell.textLabel?.text {
-            attendanceData[text] = []
-            name = text
-            nameLabel.text = text
-            if let reason = reasonField.text {
-                if !(reason == "") {
-                    personReason = reason
-                }
+        name = patrolData[indexPath.row]
+        nameLabel.text = name
+        if let reason = reasonField.text {
+            if !(reason == "") {
+                personReason = reason
             }
-            reasonView.isHidden = false
         }
+        reasonView.isHidden = false
     }
     
     @IBAction func segmentedCtrl(_ sender: UISegmentedControl) {
@@ -52,24 +48,23 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBAction func save(_ sender: Any) {
         if let reason = reasonField.text {
-            if !(reason == "") {
+            if (reason != "" || reason != "Enter Reason") {
                 personReason = reason
             }
         }
-        if personAttendance != "" && personReason != "" {
-            attendanceData[name] = [personAttendance, personReason]
+        
+        if (personAttendance == "Canceled") {
             reasonView.isHidden = true
-            tableView.reloadData()
-        } else if personAttendance != "Canceled" && personReason != "Canceled" {
-            attendanceData.removeValue(forKey: name)
         } else {
-            saveBtn.titleLabel?.text = "Please Enter a Reason."
+            if (personReason == "Enter Reason") {
+                saveBtn.titleLabel?.text = "Enter a Reason"
+            } else {
+                attendanceData[name] = [personAttendance, personReason]
+                reasonView.isHidden = true
+            }
         }
         
-        for i in 0...attendanceData.count {
-            let temp = attendanceData[patrolData[i]]
-            print(temp)
-        }
+        print(attendanceData[name])
     }
 
     // Variables
@@ -87,7 +82,7 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tStrength: UILabel!
     @IBOutlet weak var cStrength: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tapGuesture: UITapGestureRecognizer!
+    @IBOutlet weak var generateAttBtn: UIButton!
     
     // Reason View
     @IBOutlet weak var reasonView: UIView!
@@ -106,6 +101,10 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
         reasonView.clipsToBounds = true
         reasonView.layer.cornerRadius = 12
         reasonView.isHidden = true
+        
+        // Edit Btn
+        generateAttBtn.clipsToBounds = true
+        generateAttBtn.layer.cornerRadius = 12
         
         // Data
         if let name = userDefaults.string(forKey: "Chosen Patrol") {
@@ -133,11 +132,21 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
         default:
             fatalError("Unknown Patrol")
         }
+        
+        for i in 0...patrolData.count - 1 {
+            attendanceData[patrolData[i]] = ["", ""]
+        }
+        
         tStrength.text = "Total Strength: \(String(patrolData.count))"
         cStrength.text = "Current Strength: \(String(patrolData.count - absentLate))"
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
         cStrength.text = "Current Strength: \(String(patrolData.count - absentLate))"
+    }
+    
+    @IBAction func generateAttendance(_ sender: Any) {
+        userDefaults.set(attendanceData, forKey: "Attendance")
     }
 }
