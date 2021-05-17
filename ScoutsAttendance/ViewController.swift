@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var terab: UIButton!
     @IBOutlet weak var zetab: UIButton!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var today: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +40,16 @@ class ViewController: UIViewController {
         bgView.clipsToBounds = true
         bgView.layer.cornerRadius = 12
         
+        // Date
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        today.text = "Current Date: \(formatter.string(from: Date()))"
+        
         // UserDefaults Data
         if let fo = userDefaults.bool(forKey: "First Open") as? Bool {
             didFirstOpen = fo
         }
-        
+
         // Get Data
         if (!didFirstOpen) {
             let patrols = ["EXA", "NANO", "TERA", "ZETTA"]
@@ -66,8 +72,10 @@ class ViewController: UIViewController {
                     let patrolNames = worksheet.cells(atColumns: [ColumnReference("B")!])
                         .compactMap { $0.stringValue(sharedStrings!) }
                     for i in 0...patrols.count - 1 {
-                        let startRow = patrolNames.firstIndex(of: patrols[i]) ?? 0
-                        let endRow = patrolNames.lastIndex(of: patrols[i]) ?? 0
+                        var startRow = patrolNames.firstIndex(of: patrols[i]) ?? 0
+                        startRow += 1
+                        var endRow = patrolNames.lastIndex(of: patrols[i]) ?? 0
+                        endRow += 1
                        
                         
                         var index = 0
@@ -76,7 +84,7 @@ class ViewController: UIViewController {
                                 let parseData = worksheet.cells(atRows: [UInt(startRow + index)])
                                     .compactMap { $0.stringValue(sharedStrings!) }
                                 var name = ""
-                                if (!parseData.isEmpty) {name = parseData[0] }
+                                if (!parseData.isEmpty) { name = parseData[0] }
                                 switch patrols[i] {
                                 case "EXA":
                                     exa.append(name)
@@ -122,4 +130,3 @@ class ViewController: UIViewController {
     }
     
 }
-

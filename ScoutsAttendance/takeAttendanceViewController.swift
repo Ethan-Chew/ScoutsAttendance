@@ -63,8 +63,6 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
                 reasonView.isHidden = true
             }
         }
-        
-        print(attendanceData[name])
     }
 
     // Variables
@@ -79,8 +77,6 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
     
     // Labels
     @IBOutlet weak var patrolName: UILabel!
-    @IBOutlet weak var tStrength: UILabel!
-    @IBOutlet weak var cStrength: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var generateAttBtn: UIButton!
     
@@ -136,17 +132,13 @@ class takeAttendanceViewController: UIViewController, UITableViewDelegate, UITab
         for i in 0...patrolData.count - 1 {
             attendanceData[patrolData[i]] = ["", ""]
         }
-        
-        tStrength.text = "Total Strength: \(String(patrolData.count))"
-        cStrength.text = "Current Strength: \(String(patrolData.count - absentLate))"
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
-        cStrength.text = "Current Strength: \(String(patrolData.count - absentLate))"
-    }
-    
+
     @IBAction func generateAttendance(_ sender: Any) {
+        if name == "" {
+            attendanceData.removeValue(forKey: name)
+        }
+        
         userDefaults.set(attendanceData, forKey: "Attendance")
     }
 }
